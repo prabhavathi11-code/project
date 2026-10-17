@@ -1,0 +1,158 @@
+.seller-orders-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.seller-orders-header {
+  padding: 1.5rem 2rem;
+  border-left: 4px solid #f59e0b;
+}
+
+.seller-orders-header h2 {
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.seller-orders-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.seller-orders-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+}
+
+.seller-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.seller-orders-table th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(11, 15, 25, 0.4);
+}
+
+.seller-orders-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+}
+
+.order-badge-pill {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.item-title-sold {
+  color: var(--text-primary);
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.item-sub-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.buyer-meetup-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.meetup-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #fbbf24;
+  font-size: 0.88rem;
+}
+
+.gold-pin {
+  color: #f59e0b;
+}
+
+.buyer-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.buyer-contact-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.amount-cell {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #10b981;
+  font-size: 1.05rem;
+}
+
+.btn-status-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.ship-btn {
+  background: #f59e0b;
+  color: #000000;
+}
+
+.ship-btn:hover {
+  background: #d97706;
+}
+
+.deliver-btn {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.deliver-btn:hover {
+  background: #059669;
+}
+
+.delivered-badge-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #10b981;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.cancelled-label {
+  color: #ef4444;
+  font-size: 0.82rem;
+}

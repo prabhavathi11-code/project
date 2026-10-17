@@ -1,0 +1,419 @@
+.seller-dashboard-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* 4 KPI Cards */
+.kpi-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.kpi-card {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.kpi-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.kpi-icon-wrap.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.kpi-icon-wrap.blue {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.kpi-icon-wrap.purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+.kpi-icon-wrap.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.kpi-value {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.kpi-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Handover Strip */
+.handover-strip-card {
+  padding: 1.5rem;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.strip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.strip-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strip-truck-icon {
+  font-size: 1.6rem;
+  color: #fbbf24;
+}
+
+.strip-title-row h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.strip-title-row p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.view-all-handovers-btn {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.all-clear-box {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-md);
+  color: #34d399;
+  font-size: 0.9rem;
+}
+
+.check-icon {
+  font-size: 1.2rem;
+}
+
+.handover-items-scroller {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.handover-chip {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  min-width: 240px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.chip-badge-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chip-order-ref {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chip-item-title {
+  font-size: 0.92rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+/* Chart and Status Breakdown Row */
+.chart-and-status-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+}
+
+.chart-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.chart-header h3 {
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+}
+
+.chart-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* 7-Bar Chart Visualizer */
+.seven-bar-chart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 220px;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(11, 15, 25, 0.4);
+  border-radius: var(--radius-md);
+  gap: 0.5rem;
+}
+
+.chart-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.bar-val-popup {
+  font-size: 0.72rem;
+  color: #ffffff;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.bar-val-popup small {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.bar-track {
+  width: 28px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-fill.has-sales {
+  background: linear-gradient(180deg, #6366f1 0%, #4338ca 100%);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.bar-fill.zero-sales {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+.bar-day-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.bar-date-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+/* Status Breakdown */
+.status-breakdown-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.status-breakdown-card h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.panel-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.status-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.status-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.status-row-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.status-count {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.status-progress-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.status-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+.status-fill.placed {
+  background: var(--status-placed);
+}
+
+.status-fill.shipped {
+  background: var(--status-shipped);
+}
+
+.status-fill.delivered {
+  background: var(--status-delivered);
+}
+
+.status-fill.cancelled {
+  background: var(--status-cancelled);
+}
+
+/* Top Listings */
+.top-listings-card {
+  padding: 1.75rem;
+}
+
+.top-listings-card h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.top-listings-table-wrap {
+  overflow-x: auto;
+}
+
+.top-listings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.top-listings-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.top-listings-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rank-num {
+  font-weight: 800;
+  color: var(--primary);
+  margin-right: 0.6rem;
+}
+
+.tl-title {
+  color: var(--text-primary);
+}
+
+.amount-col {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #10b981;
+}
+
+.empty-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .chart-and-status-row {
+    grid-template-columns: 1fr;
+  }
+}

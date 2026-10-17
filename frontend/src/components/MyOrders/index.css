@@ -1,0 +1,160 @@
+.orders-page-container {
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.orders-header {
+  margin-bottom: 2rem;
+}
+
+.orders-title {
+  font-size: 1.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.orders-sub {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.orders-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.order-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.order-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.order-id-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.order-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.order-number {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.order-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.meta-item svg {
+  color: var(--primary);
+}
+
+.order-items-summary {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+}
+
+.items-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.items-preview-names {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.order-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.order-total-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.total-label {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.total-amount {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.view-details-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+}
+
+.empty-orders-card {
+  text-align: center;
+  padding: 4.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 3rem auto;
+}
+
+.empty-orders-card h2 {
+  font-size: 1.6rem;
+}
+
+.empty-orders-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}

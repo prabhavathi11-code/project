@@ -1,0 +1,248 @@
+.checkout-page-container {
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.checkout-header {
+  margin-bottom: 2rem;
+}
+
+.checkout-title {
+  font-size: 1.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.checkout-sub {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.checkout-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-section-card {
+  padding: 1.75rem;
+}
+
+.section-card-title {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sec-icon {
+  color: var(--primary);
+}
+
+.sec-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Meetup Options */
+.meetup-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.meetup-option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.meetup-option-card input {
+  margin-top: 0.2rem;
+  accent-color: var(--primary);
+}
+
+.meetup-option-card.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.meetup-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.meetup-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.checked-icon {
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-left: auto;
+}
+
+/* Address Form */
+.address-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.address-form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.address-form-grid input {
+  padding: 0.7rem 0.85rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.address-form-grid input:focus {
+  border-color: var(--primary);
+}
+
+/* Payment Options */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.payment-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.payment-card input {
+  accent-color: var(--primary);
+}
+
+.payment-card.active {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+  color: #10b981;
+}
+
+.payment-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.payment-content span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Summary Card */
+.checkout-summary-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  top: 90px;
+}
+
+.checkout-items-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.preview-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.preview-title {
+  color: var(--text-primary);
+  font-weight: 500;
+  display: block;
+}
+
+.preview-qty-price {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.preview-amount {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 0.95rem;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+.checkout-assurance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.checkout-assurance svg {
+  color: #10b981;
+}
+
+.checkout-empty-wrap {
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 860px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+}

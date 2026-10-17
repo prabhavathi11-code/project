@@ -1,0 +1,95 @@
+.product-form-wrap {
+  padding: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-head {
+  margin-bottom: 2rem;
+}
+
+.form-head h2 {
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.form-head p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.listing-editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #f59e0b;
+}
+
+.checkboxes-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(11, 15, 25, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.checkbox-item input {
+  width: 18px;
+  height: 18px;
+  accent-color: #f59e0b;
+  cursor: pointer;
+}
+
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

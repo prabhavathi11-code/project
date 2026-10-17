@@ -1,0 +1,233 @@
+/* CampusMart Global Design System */
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Inter', sans-serif;
+
+  /* Colors */
+  --bg-primary: #0b0f19;
+  --bg-secondary: #111827;
+  --bg-card: #1e293b;
+  --bg-card-hover: #283548;
+  --bg-glass: rgba(30, 41, 59, 0.7);
+
+  --border-subtle: #334155;
+  --border-focus: #6366f1;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-light: rgba(99, 102, 241, 0.15);
+
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+
+  /* Status Colors */
+  --status-placed: #6366f1;
+  --status-placed-bg: rgba(99, 102, 241, 0.15);
+  
+  --status-shipped: #f59e0b;
+  --status-shipped-bg: rgba(245, 158, 11, 0.15);
+  
+  --status-delivered: #10b981;
+  --status-delivered-bg: rgba(16, 185, 129, 0.15);
+  
+  --status-cancelled: #ef4444;
+  --status-cancelled-bg: rgba(239, 68, 68, 0.15);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.35);
+
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Common UI Elements */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+  color: #ffffff;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  opacity: 0.95;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge-placed {
+  background: var(--status-placed-bg);
+  color: var(--status-placed);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-shipped {
+  background: var(--status-shipped-bg);
+  color: var(--status-shipped);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-delivered {
+  background: var(--status-delivered-bg);
+  color: var(--status-delivered);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-condition {
+  background: rgba(148, 163, 184, 0.12);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.badge-senior {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.2) 0%, rgba(249, 115, 22, 0.2) 100%);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-negotiable {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Loading Spinner Container */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 1rem;
+  color: var(--text-secondary);
+}

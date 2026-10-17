@@ -1,0 +1,31 @@
+services:
+  # Django Backend API
+  - type: web
+    name: campusmart-backend
+    env: python
+    buildCommand: "cd backend && pip install -r requirements.txt && python manage.py migrate && python manage.py seed_listings --with-orders"
+    startCommand: "cd backend && python manage.py runserver 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DJANGO_SETTINGS_MODULE
+        value: myproject.settings
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+
+  # Vite React Frontend
+  - type: web
+    name: campusmart-frontend
+    env: static
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: "./frontend/dist"
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: campusmart-backend
+          property: host
