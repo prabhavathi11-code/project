@@ -18,6 +18,15 @@ class Listing(models.Model):
         ('Available', 'Available'),
         ('Sold', 'Sold'),
     )
+    BRANCH_CHOICES = (
+        ('Common', 'Common 1st Year'),
+        ('CSE', 'Computer Science (CSE)'),
+        ('ECE', 'Electronics & Comm (ECE)'),
+        ('MECH', 'Mechanical Engineering (MECH)'),
+        ('EEE', 'Electrical Engineering (EEE)'),
+        ('CIVIL', 'Civil Engineering (CIVIL)'),
+        ('General', 'General Campus Life'),
+    )
 
     title = models.CharField(max_length=255)
     hostel = models.CharField(max_length=100)
@@ -31,6 +40,13 @@ class Listing(models.Model):
     availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='Available')
     is_senior_deal = models.BooleanField(default=False)
     description = models.TextField(blank=True, default='')
+
+    # Academic Course & Subject Metadata
+    branch = models.CharField(max_length=50, choices=BRANCH_CHOICES, default='General')
+    semester = models.IntegerField(default=1) # Semester 1 to 8
+    subject_code = models.CharField(max_length=50, blank=True, default='') # e.g. CS201, MA101, EC302
+    author = models.CharField(max_length=150, blank=True, default='')
+
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='listings')
     created_at = models.DateTimeField(auto_now_add=True)
 

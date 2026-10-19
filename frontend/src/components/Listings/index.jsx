@@ -21,6 +21,8 @@ import './index.css'
 
 const CATEGORIES = ['All', 'Books', 'Electronics', 'Hostel Essentials', 'Cycles', 'Sports']
 const HOSTELS = ['All', 'Hostel A', 'Hostel B', 'Hostel C', 'Hostel D']
+const BRANCHES = ['All', 'Common', 'CSE', 'ECE', 'MECH', 'EEE', 'CIVIL']
+const SEMESTERS = ['All', '1', '2', '3', '4', '5', '6', '7', '8']
 const RATINGS = [
   { label: 'All Ratings', value: '' },
   { label: '4★ & above', value: '4' },
@@ -47,6 +49,8 @@ const Listings = () => {
   const initialCategory = searchParams.get('category') || 'All'
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [selectedHostel, setSelectedHostel] = useState('All')
+  const [selectedBranch, setSelectedBranch] = useState('All')
+  const [selectedSemester, setSelectedSemester] = useState('All')
   const [selectedRating, setSelectedRating] = useState('')
   const [ordering, setOrdering] = useState('')
 
@@ -57,6 +61,7 @@ const Listings = () => {
 
   // Page State
   const [page, setPage] = useState(1)
+
 
   // Adding to cart animation feedback
   const [addedIds, setAddedIds] = useState({})
@@ -103,6 +108,12 @@ const Listings = () => {
     if (selectedHostel && selectedHostel !== 'All') {
       params.set('hostel', selectedHostel)
     }
+    if (selectedBranch && selectedBranch !== 'All') {
+      params.set('branch', selectedBranch)
+    }
+    if (selectedSemester && selectedSemester !== 'All') {
+      params.set('semester', selectedSemester)
+    }
     if (selectedRating) {
       params.set('rating', selectedRating)
     }
@@ -129,7 +140,7 @@ const Listings = () => {
     } finally {
       setLoadingListings(false)
     }
-  }, [page, selectedCategory, selectedHostel, selectedRating, ordering, submittedSearch])
+  }, [page, selectedCategory, selectedHostel, selectedBranch, selectedSemester, selectedRating, ordering, submittedSearch])
 
   useEffect(() => {
     fetchListings()
@@ -239,12 +250,14 @@ const Listings = () => {
         <aside className="filters-sidebar glass-card">
           <div className="filters-header">
             <h3><FaSlidersH /> Filters</h3>
-            {(selectedCategory !== 'All' || selectedHostel !== 'All' || selectedRating || submittedSearch) && (
+            {(selectedCategory !== 'All' || selectedHostel !== 'All' || selectedBranch !== 'All' || selectedSemester !== 'All' || selectedRating || submittedSearch) && (
               <button
                 className="reset-filters-btn"
                 onClick={() => {
                   setSelectedCategory('All')
                   setSelectedHostel('All')
+                  setSelectedBranch('All')
+                  setSelectedSemester('All')
                   setSelectedRating('')
                   setTypedSearch('')
                   setSubmittedSearch('')
@@ -254,6 +267,47 @@ const Listings = () => {
                 Clear all
               </button>
             )}
+          </div>
+
+          {/* Academic Branch Filter */}
+          <div className="filter-group">
+            <label className="filter-title">
+              <FaGraduationCap style={{ marginRight: '6px', color: 'var(--primary)' }} />
+              Academic Branch
+            </label>
+            <div className="category-pills">
+              {BRANCHES.map(b => (
+                <button
+                  key={b}
+                  className={`cat-pill ${selectedBranch === b ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedBranch(b)
+                    setPage(1)
+                  }}
+                >
+                  {b}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Semester Filter */}
+          <div className="filter-group">
+            <label className="filter-title">Target Semester</label>
+            <div className="semester-grid">
+              {SEMESTERS.map(sem => (
+                <button
+                  key={sem}
+                  className={`sem-pill ${selectedSemester === sem ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedSemester(sem)
+                    setPage(1)
+                  }}
+                >
+                  {sem === 'All' ? 'All' : `Sem ${sem}`}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Category Filter */}
@@ -372,12 +426,26 @@ const Listings = () => {
             <span className="results-count">
               Showing <strong>{listings.length}</strong> of <strong>{count}</strong> campus listings
             </span>
-            {submittedSearch && (
-              <span className="active-filter-badge">
-                Search: "{submittedSearch}"
-                <FaTimes onClick={() => { setTypedSearch(''); setSubmittedSearch(''); setPage(1); }} />
-              </span>
-            )}
+            <div className="active-filters-list">
+              {submittedSearch && (
+                <span className="active-filter-badge">
+                  Search: "{submittedSearch}"
+                  <FaTimes onClick={() => { setTypedSearch(''); setSubmittedSearch(''); setPage(1); }} />
+                </span>
+              )}
+              {selectedBranch !== 'All' && (
+                <span className="active-filter-badge branch-filter-badge">
+                  Branch: {selectedBranch}
+                  <FaTimes onClick={() => { setSelectedBranch('All'); setPage(1); }} />
+                </span>
+              )}
+              {selectedSemester !== 'All' && (
+                <span className="active-filter-badge sem-filter-badge">
+                  Semester: {selectedSemester}
+                  <FaTimes onClick={() => { setSelectedSemester('All'); setPage(1); }} />
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Listings Grid */}
@@ -400,6 +468,8 @@ const Listings = () => {
                 onClick={() => {
                   setSelectedCategory('All')
                   setSelectedHostel('All')
+                  setSelectedBranch('All')
+                  setSelectedSemester('All')
                   setSelectedRating('')
                   setTypedSearch('')
                   setSubmittedSearch('')
@@ -418,6 +488,7 @@ const Listings = () => {
                     <div className="card-overlay-badges">
                       <span className="badge badge-condition">{item.condition}</span>
                       {item.negotiable && <span className="badge badge-negotiable">Negotiable</span>}
+                      {item.is_senior_deal && <span className="badge badge-senior">Senior Deal</span>}
                     </div>
                   </div>
 
@@ -430,6 +501,23 @@ const Listings = () => {
                     <h3 className="card-title" title={item.title}>
                       {item.title}
                     </h3>
+
+                    {/* Academic Subject / Author info if available */}
+                    {(item.author || (item.branch && item.branch !== 'General') || item.subject_code) && (
+                      <div className="card-academic-row">
+                        {item.branch && item.branch !== 'General' && (
+                          <span className="badge badge-branch">
+                            <FaGraduationCap /> {item.branch} • Sem {item.semester}
+                          </span>
+                        )}
+                        {item.subject_code && (
+                          <span className="badge badge-subcode">{item.subject_code}</span>
+                        )}
+                        {item.author && (
+                          <span className="card-author" title={item.author}>By {item.author}</span>
+                        )}
+                      </div>
+                    )}
 
                     <div className="card-rating-row">
                       <div className="rating-pill">

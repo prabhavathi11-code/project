@@ -318,6 +318,55 @@
   margin-top: 1rem;
 }
 
+.details-academic-box {
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.acad-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.academic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+.academic-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.acad-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.acad-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subject-highlight {
+  color: #fbbf24;
+  font-family: monospace;
+  font-weight: 700;
+}
+
 @media (max-width: 860px) {
   .details-grid {
     grid-template-columns: 1fr;
@@ -326,3 +375,4 @@
     height: 300px;
   }
 }
+

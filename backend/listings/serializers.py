@@ -3,7 +3,6 @@ from .models import Listing
 
 class ListingSerializer(serializers.ModelSerializer):
     seller_username = serializers.ReadOnlyField(source='seller.username')
-    # Price is serialized as string/decimal e.g. "450.00"
     price = serializers.DecimalField(max_digits=10, decimal_places=2, coerce_to_string=True)
 
     class Meta:
@@ -22,6 +21,10 @@ class ListingSerializer(serializers.ModelSerializer):
             'availability',
             'is_senior_deal',
             'description',
+            'branch',
+            'semester',
+            'subject_code',
+            'author',
             'seller',
             'seller_username',
             'created_at'

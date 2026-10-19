@@ -134,10 +134,32 @@ class Command(BaseCommand):
             "https://picsum.photos/seed/cycle1/400/400",
         ]
 
+        # Academic metadata mapping for Books and Technical items
+        academic_meta = {
+            1: {"branch": "Common", "semester": 1, "subject_code": "MA101", "author": "Erwin Kreyszig"},
+            2: {"branch": "CSE", "semester": 3, "subject_code": "CS201", "author": "Cormen, Leiserson, Rivest, Stein"},
+            3: {"branch": "ECE", "semester": 3, "subject_code": "EC202", "author": "John F. Wakerly"},
+            4: {"branch": "Common", "semester": 2, "subject_code": "CH101", "author": "Morrison & Boyd"},
+            5: {"branch": "CSE", "semester": 4, "subject_code": "CS301", "author": "Silberschatz, Galvin, Gagne"},
+            6: {"branch": "CSE", "semester": 4, "subject_code": "CS302", "author": "Silberschatz, Korth, Sudarshan"},
+            7: {"branch": "Common", "semester": 1, "subject_code": "PH101", "author": "Serway & Jewett"},
+            8: {"branch": "ECE", "semester": 4, "subject_code": "EC301", "author": "Adel S. Sedra, Kenneth C. Smith"},
+            9: {"branch": "MECH", "semester": 2, "subject_code": "ME102", "author": "R.C. Hibbeler"},
+            10: {"branch": "CSE", "semester": 5, "subject_code": "CS401", "author": "James F. Kurose, Keith W. Ross"},
+            11: {"branch": "EEE", "semester": 5, "subject_code": "EE302", "author": "Norman S. Nise"},
+            12: {"branch": "MECH", "semester": 5, "subject_code": "ME305", "author": "Yunus A. Cengel"},
+            13: {"branch": "ECE", "semester": 3, "subject_code": "EC204", "author": "Alan V. Oppenheim"},
+            14: {"branch": "CSE", "semester": 2, "subject_code": "CS102", "author": "Eric Matthes"},
+            15: {"branch": "General", "semester": 6, "subject_code": "GE401", "author": "Pearson Education"},
+            18: {"branch": "ECE", "semester": 3, "subject_code": "EC251", "author": "Arduino Foundation"},
+            27: {"branch": "CSE", "semester": 5, "subject_code": "CS501", "author": "Raspberry Pi Org"},
+        }
+
         self.stdout.write("Syncing 54 listings...")
         for idx, (category, title, hostel, condition, negotiable, price, rating, reviews, desc) in enumerate(all_items, start=1):
             is_senior = (idx in senior_deal_ids)
             img_url = f"https://picsum.photos/seed/listing{idx}/400/400"
+            meta = academic_meta.get(idx, {"branch": "General", "semester": 1, "subject_code": "", "author": ""})
 
             Listing.objects.update_or_create(
                 id=idx,
@@ -154,6 +176,10 @@ class Command(BaseCommand):
                     'availability': 'Available',
                     'is_senior_deal': is_senior,
                     'description': desc,
+                    'branch': meta['branch'],
+                    'semester': meta['semester'],
+                    'subject_code': meta['subject_code'],
+                    'author': meta['author'],
                     'seller': priya
                 }
             )

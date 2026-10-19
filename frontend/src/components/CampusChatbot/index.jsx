@@ -12,9 +12,10 @@ import './index.css'
 
 const DEFAULT_SUGGESTIONS = [
   '🎓 Show Senior Deals',
+  '📚 CSE Semester 3 Books',
   '🧮 Casio Calculator under ₹800',
   '🚲 Available Bicycles in Hostel A',
-  '📍 How do Campus Meetups work?',
+  '📍 Safe Campus Meetup Points',
   '📦 Order tracking & stages'
 ]
 

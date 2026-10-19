@@ -13,8 +13,10 @@ import {
   FaLock,
   FaMinus,
   FaPlus,
-  FaTag
+  FaTag,
+  FaGraduationCap
 } from 'react-icons/fa'
+
 import { PulseLoader } from 'react-spinners'
 import './index.css'
 
@@ -192,6 +194,39 @@ const ListingItemDetails = () => {
             <h4>Seller's Note & Description:</h4>
             <p>{listing.description || 'No detailed description provided by the student seller.'}</p>
           </div>
+
+          {/* Academic & Curriculum Metadata */}
+          {(listing.branch || listing.subject_code || listing.author) && (
+            <div className="details-academic-box">
+              <h4 className="acad-heading"><FaGraduationCap /> Academic & Curriculum Details</h4>
+              <div className="academic-grid">
+                {listing.branch && (
+                  <div className="academic-item">
+                    <span className="acad-label">Branch:</span>
+                    <span className="acad-val">{listing.branch}</span>
+                  </div>
+                )}
+                {listing.semester && (
+                  <div className="academic-item">
+                    <span className="acad-label">Semester:</span>
+                    <span className="acad-val">Semester {listing.semester}</span>
+                  </div>
+                )}
+                {listing.subject_code && (
+                  <div className="academic-item">
+                    <span className="acad-label">Subject Code:</span>
+                    <span className="acad-val subject-highlight">{listing.subject_code}</span>
+                  </div>
+                )}
+                {listing.author && (
+                  <div className="academic-item">
+                    <span className="acad-label">Author / Publisher:</span>
+                    <span className="acad-val">{listing.author}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Campus Meetup Guarantee Box */}
           <div className="meetup-guarantee-box">

@@ -52,21 +52,42 @@ class CampusChatbotView(APIView):
                 "suggestions": ["Check My Orders", "Meetup Points", "Seller Dashboard"]
             })
 
-        # Search matching listings by query tokens
-        tokens = [t for t in user_message.split() if len(t) > 3]
+        # Academic Branch & Semester queries (CSE, ECE, MECH, EEE, CIVIL, 1st-8th Sem)
+        branches = ['cse', 'ece', 'mech', 'eee', 'civil', 'common']
+        matched_branch = next((b for b in branches if b in user_message), None)
+        if matched_branch:
+            branch_key = matched_branch.upper() if matched_branch != 'common' else 'Common'
+            items = Listing.objects.filter(branch=branch_key)[:4]
+            if items.exists():
+                details = "; ".join([f"{i.title} (Sem {i.semester}, ₹{i.price})" for i in items])
+                return Response({
+                    "reply": f"📚 Found {branch_key} curriculum items: {details}. You can filter directly by {branch_key} in the catalog!",
+                    "suggestions": [f"{branch_key} Semester 3", "Engineering Books", "Senior Deals"]
+                })
+
+        # Search matching listings by query tokens (including subject_code, author, branch, title, category)
+        tokens = [t for t in user_message.split() if len(t) > 2]
         query = Q()
         for t in tokens:
-            query |= Q(title__icontains=t) | Q(category__icontains=t) | Q(hostel__icontains=t)
+            query |= (
+                Q(title__icontains=t) |
+                Q(category__icontains=t) |
+                Q(hostel__icontains=t) |
+                Q(subject_code__icontains=t) |
+                Q(author__icontains=t) |
+                Q(branch__icontains=t)
+            )
 
         matched = Listing.objects.filter(query)[:3]
         if matched.exists():
-            details = "; ".join([f"'{m.title}' (₹{m.price}, {m.hostel})" for m in matched])
+            details = "; ".join([f"'{m.title}' (₹{m.price}, {m.hostel}, {m.branch})" for m in matched])
             return Response({
                 "reply": f"✨ I found listings matching your search: {details}. Click on listings to view condition and add to cart!",
                 "suggestions": ["View Listings", "Senior Deals", "Contact Seller"]
             })
 
         return Response({
-            "reply": "🤖 I'm your 24/7 CampusMart AI! I can help you search items (e.g. 'Casio calculator', 'Hostel C textbooks', 'Cycles'), explain Senior Deals, explain meetup locations, or guide you on buying and selling on campus. What are you looking for?",
-            "suggestions": ["Show Senior Deals", "Engineering Books", "Campus Meetup Points", "Electronics under ₹1000"]
+            "reply": "🤖 I'm your 24/7 CampusMart AI! I can help you search items (e.g. 'CSE textbooks', 'Casio calculator', 'Hostel C cycle', 'Cormen algorithms'), explain Senior Deals, explain meetup locations, or guide you on buying and selling on campus. What are you looking for?",
+            "suggestions": ["CSE 3rd Sem Books", "Show Senior Deals", "Campus Meetup Points", "Calculators under ₹800"]
         })
+

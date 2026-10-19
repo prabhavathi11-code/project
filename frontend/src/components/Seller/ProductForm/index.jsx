@@ -16,6 +16,15 @@ import './index.css'
 const CATEGORIES = ['Books', 'Electronics', 'Hostel Essentials', 'Cycles', 'Sports']
 const HOSTELS = ['Hostel A', 'Hostel B', 'Hostel C', 'Hostel D']
 const CONDITIONS = ['Like New', 'Good', 'Fair']
+const BRANCHES = [
+  { value: 'General', label: 'General Campus Life' },
+  { value: 'Common', label: 'Common 1st Year' },
+  { value: 'CSE', label: 'Computer Science (CSE)' },
+  { value: 'ECE', label: 'Electronics & Comm (ECE)' },
+  { value: 'MECH', label: 'Mechanical Eng (MECH)' },
+  { value: 'EEE', label: 'Electrical Eng (EEE)' },
+  { value: 'CIVIL', label: 'Civil Eng (CIVIL)' },
+]
 
 const ProductForm = () => {
   const { id } = useParams()
@@ -32,12 +41,17 @@ const ProductForm = () => {
     image_url: 'https://picsum.photos/seed/listingnew/400/400',
     availability: 'Available',
     is_senior_deal: false,
+    branch: 'General',
+    semester: 1,
+    subject_code: '',
+    author: '',
     description: ''
   })
 
   const [loading, setLoading] = useState(isEditMode)
   const [submitting, setSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
 
   useEffect(() => {
     if (!isEditMode) return
@@ -65,6 +79,10 @@ const ProductForm = () => {
           image_url: data.image_url || data.imageUrl || '',
           availability: data.availability || 'Available',
           is_senior_deal: Boolean(data.is_senior_deal),
+          branch: data.branch || 'General',
+          semester: data.semester || 1,
+          subject_code: data.subject_code || '',
+          author: data.author || '',
           description: data.description || ''
         })
       } catch (err) {
@@ -262,6 +280,63 @@ const ProductForm = () => {
               <option value="Sold">Sold</option>
             </select>
           </div>
+
+          {/* Academic Branch */}
+          <div className="form-group">
+            <label htmlFor="branch">Engineering Branch</label>
+            <select
+              id="branch"
+              name="branch"
+              value={formData.branch}
+              onChange={handleChange}
+            >
+              {BRANCHES.map(b => (
+                <option key={b.value} value={b.value}>{b.label}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Semester */}
+          <div className="form-group">
+            <label htmlFor="semester">Target Semester</label>
+            <select
+              id="semester"
+              name="semester"
+              value={formData.semester}
+              onChange={handleChange}
+            >
+              {[1, 2, 3, 4, 5, 6, 7, 8].map(s => (
+                <option key={s} value={s}>Semester {s}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Subject Code */}
+          <div className="form-group">
+            <label htmlFor="subject_code">Subject / Course Code</label>
+            <input
+              id="subject_code"
+              type="text"
+              name="subject_code"
+              value={formData.subject_code}
+              onChange={handleChange}
+              placeholder="e.g. CS201, MA101, EC302"
+            />
+          </div>
+
+          {/* Book Author / Manufacturer */}
+          <div className="form-group">
+            <label htmlFor="author">Author / Brand / Model</label>
+            <input
+              id="author"
+              type="text"
+              name="author"
+              value={formData.author}
+              onChange={handleChange}
+              placeholder="e.g. Cormen, Casio, Hero"
+            />
+          </div>
+
 
           {/* Checkboxes Row */}
           <div className="form-group checkboxes-block full-width">

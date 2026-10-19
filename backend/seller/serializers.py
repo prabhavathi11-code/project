@@ -24,6 +24,10 @@ class SellerListingSerializer(serializers.ModelSerializer):
             'availability',
             'is_senior_deal',
             'description',
+            'branch',
+            'semester',
+            'subject_code',
+            'author',
             'created_at'
         ]
         read_only_fields = ['id', 'rating', 'total_reviews', 'created_at']
