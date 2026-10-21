@@ -1,22 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { apiFetch } from '../../api'
 import {
   FaRobot,
   FaTimes,
   FaPaperPlane,
   FaLightbulb,
-  FaGraduationCap
+  FaTrashAlt,
+  FaExternalLinkAlt,
+  FaMapMarkerAlt,
+  FaTag
 } from 'react-icons/fa'
 import { PulseLoader } from 'react-spinners'
+import { handleImageError } from '../../utils/imageFallback'
 import './index.css'
 
 const DEFAULT_SUGGESTIONS = [
   '🎓 Show Senior Deals',
-  '📚 CSE Semester 3 Books',
+  '📚 CSE 3rd Sem Books',
   '🧮 Casio Calculator under ₹800',
-  '🚲 Available Bicycles in Hostel A',
+  '🚲 Available Bicycles',
   '📍 Safe Campus Meetup Points',
-  '📦 Order tracking & stages'
+  '💡 How does COD work?'
 ]
 
 const CampusChatbot = () => {
@@ -24,8 +29,9 @@ const CampusChatbot = () => {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: "👋 Hi! I'm Marty, your CampusMart AI Assistant. Ask me anything about textbooks, electronics, cycles, senior deals, orders, or campus meetup points!",
-      suggestions: DEFAULT_SUGGESTIONS
+      text: "👋 Hi! I'm Marty, your 24/7 CampusMart AI Assistant. Ask me anything—search textbooks, gadgets, cycles, senior clearance deals, or ask how campus meetup handovers work!",
+      suggestions: DEFAULT_SUGGESTIONS,
+      items: []
     }
   ])
   const [input, setInput] = useState('')
@@ -65,7 +71,8 @@ const CampusChatbot = () => {
           {
             sender: 'bot',
             text: data.reply,
-            suggestions: data.suggestions || []
+            suggestions: data.suggestions || [],
+            items: data.items || []
           }
         ])
       } else {
@@ -73,7 +80,9 @@ const CampusChatbot = () => {
           ...newMessages,
           {
             sender: 'bot',
-            text: "I'm having a little trouble connecting to campus servers right now. Please try again in a moment!"
+            text: "I'm having a little trouble connecting to campus servers right now. Please try again in a moment!",
+            suggestions: ['Try again', 'Browse Catalog', 'Meetup Points'],
+            items: []
           }
         ])
       }
@@ -82,12 +91,25 @@ const CampusChatbot = () => {
         ...newMessages,
         {
           sender: 'bot',
-          text: "Campus connection timeout. Please check your network and try again."
+          text: "Campus network timeout. Please check your connection and ask again!",
+          suggestions: ['Retry', 'Safe Meetup Points'],
+          items: []
         }
       ])
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleClearChat = () => {
+    setMessages([
+      {
+        sender: 'bot',
+        text: "👋 Chat reset! How can I assist you with campus marketplace deals today?",
+        suggestions: DEFAULT_SUGGESTIONS,
+        items: []
+      }
+    ])
   }
 
   const handleKeyDown = e => {
@@ -108,7 +130,7 @@ const CampusChatbot = () => {
         >
           <div className="fab-pulse"></div>
           <FaRobot className="fab-icon" />
-          <span className="fab-label">Ask Campus AI</span>
+          <span className="fab-label">Ask Marty AI</span>
         </button>
       )}
 
@@ -121,20 +143,29 @@ const CampusChatbot = () => {
                 <FaRobot />
               </div>
               <div>
-                <h4>CampusMart AI Assistant</h4>
+                <h4>Marty — Campus AI</h4>
                 <span className="bot-online-badge">
-                  <span className="online-dot"></span> Online • Powered by CampusMart
+                  <span className="online-dot"></span> 24/7 College Assistant
                 </span>
               </div>
             </div>
 
-            <button
-              onClick={() => setIsOpen(false)}
-              className="bot-close-btn"
-              title="Close chat"
-            >
-              <FaTimes />
-            </button>
+            <div className="header-action-buttons">
+              <button
+                onClick={handleClearChat}
+                className="bot-header-icon-btn"
+                title="Clear conversation"
+              >
+                <FaTrashAlt />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="bot-close-btn"
+                title="Close chat"
+              >
+                <FaTimes />
+              </button>
+            </div>
           </div>
 
           {/* Messages Scroll Area */}
@@ -142,9 +173,43 @@ const CampusChatbot = () => {
             {messages.map((m, idx) => (
               <div key={idx} className={`message-row ${m.sender}`}>
                 <div className={`message-bubble ${m.sender}`}>
-                  <p>{m.text}</p>
+                  <p className="message-content-text">{m.text}</p>
+
+                  {/* Render Live Product Cards if bot returned matching items */}
+                  {m.items && m.items.length > 0 && (
+                    <div className="chatbot-items-carousel">
+                      {m.items.map(item => (
+                        <Link
+                          to={`/listings/${item.id}`}
+                          key={item.id}
+                          className="chat-item-card"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <img
+                            src={item.imageUrl}
+                            alt={item.title}
+                            className="chat-item-thumb"
+                            onError={e => handleImageError(e, item.category)}
+                          />
+                          <div className="chat-item-info">
+                            <h5 className="chat-item-title">{item.title}</h5>
+                            <div className="chat-item-meta">
+                              <span className="chat-item-price">₹{item.price}</span>
+                              <span className="chat-item-hostel">
+                                <FaMapMarkerAlt /> {item.hostel}
+                              </span>
+                            </div>
+                            <span className="chat-item-condition-tag">
+                              {item.condition}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
+                {/* Quick suggestions pills */}
                 {m.suggestions && m.suggestions.length > 0 && (
                   <div className="bot-suggestions-chips">
                     {m.suggestions.map((sug, i) => (
@@ -165,6 +230,7 @@ const CampusChatbot = () => {
               <div className="message-row bot">
                 <div className="message-bubble bot typing">
                   <PulseLoader size={6} color="#818cf8" />
+                  <span className="typing-label">Marty is thinking...</span>
                 </div>
               </div>
             )}
@@ -175,7 +241,7 @@ const CampusChatbot = () => {
           <div className="chatbot-input-bar">
             <input
               type="text"
-              placeholder="Ask about calculators, cycles, senior deals..."
+              placeholder="Ask anything (e.g. 'hi', 'calculators', 'cycles', 'how to buy')..."
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -184,6 +250,7 @@ const CampusChatbot = () => {
               onClick={() => handleSend()}
               className="send-msg-btn"
               disabled={!input.trim() || loading}
+              title="Send message"
             >
               <FaPaperPlane />
             </button>

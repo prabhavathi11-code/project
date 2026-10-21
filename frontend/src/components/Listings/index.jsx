@@ -17,6 +17,7 @@ import {
   FaTimes
 } from 'react-icons/fa'
 import { PulseLoader } from 'react-spinners'
+import { handleImageError } from '../../utils/imageFallback'
 import './index.css'
 
 const CATEGORIES = ['All', 'Books', 'Electronics', 'Hostel Essentials', 'Cycles', 'Sports']
@@ -218,7 +219,12 @@ const Listings = () => {
             {seniorDeals.map(deal => (
               <Link to={`/listings/${deal.id}`} key={deal.id} className="senior-deal-card glass-card">
                 <div className="senior-img-wrap">
-                  <img src={deal.imageUrl} alt={deal.title} loading="lazy" />
+                  <img
+                    src={deal.imageUrl}
+                    alt={deal.title}
+                    loading="lazy"
+                    onError={e => handleImageError(e, deal.category)}
+                  />
                   <span className="badge badge-senior">Senior Deal</span>
                 </div>
                 <div className="senior-card-body">
@@ -484,7 +490,12 @@ const Listings = () => {
               {listings.map(item => (
                 <Link to={`/listings/${item.id}`} key={item.id} className="listing-card glass-card">
                   <div className="card-media">
-                    <img src={item.imageUrl} alt={item.title} loading="lazy" />
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      loading="lazy"
+                      onError={e => handleImageError(e, item.category)}
+                    />
                     <div className="card-overlay-badges">
                       <span className="badge badge-condition">{item.condition}</span>
                       {item.negotiable && <span className="badge badge-negotiable">Negotiable</span>}
