@@ -1,6 +1,7 @@
 # 🎓 CampusMart — College Campus Peer-to-Peer Marketplace
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-CampusMart-181717?style=for-the-badge&logo=github)](https://github.com/campusmart-org/CampusMart)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-CampusMart-181717?style=for-the-badge&logo=github)](https://github.com/prabhavathi11-code/project)
+[![Live Site](https://img.shields.io/badge/Live_Site-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://prabhavathi11-code.github.io/project/)
 [![Frontend Deployment](https://img.shields.io/badge/Vite_React-Port_3000-61DAFB?style=for-the-badge&logo=react)](http://localhost:3000)
 [![Backend Deployment](https://img.shields.io/badge/Django_REST-Port_8000-092E20?style=for-the-badge&logo=django)](http://localhost:8000)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
@@ -41,13 +42,14 @@ The local database comes pre-seeded with **54 verified campus listings** and **6
 
 ---
 
-## 🚀 Live Links & Local Endpoints
+## 🚀 Live Links & Endpoints (Verified 200 OK)
 
-- **Frontend Application**: [http://localhost:3000](http://localhost:3000)
-- **Backend API Server**: [http://localhost:8000](http://localhost:8000)
-- **Catalog API Endpoint**: [http://localhost:8000/api/listings/](http://localhost:8000/api/listings/)
-- **AI Chatbot Endpoint**: [http://localhost:8000/api/chatbot/](http://localhost:8000/api/chatbot/)
-- **GitHub Repository**: [https://github.com/campusmart-org/CampusMart](https://github.com/campusmart-org/CampusMart)
+- **🌐 Live Published Site (GitHub Pages)**: [https://prabhavathi11-code.github.io/project/](https://prabhavathi11-code.github.io/project/)
+- **📦 GitHub Repository**: [https://github.com/prabhavathi11-code/project](https://github.com/prabhavathi11-code/project)
+- **💻 Frontend Local Dev Server**: [http://localhost:3000](http://localhost:3000)
+- **⚙️ Backend Django REST API**: [http://localhost:8000](http://localhost:8000)
+- **📚 Catalog REST API Endpoint**: [http://localhost:8000/api/listings/](http://localhost:8000/api/listings/)
+- **🤖 Marty AI Chatbot Endpoint**: [http://localhost:8000/api/chatbot/](http://localhost:8000/api/chatbot/)
 
 ---
 

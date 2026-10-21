@@ -71,7 +71,7 @@ const Footer = () => {
             <h4 className="footer-heading">Repository & Deployments</h4>
             <div className="project-links-box">
               <a
-                href="https://github.com/campusmart-org/CampusMart"
+                href="https://github.com/prabhavathi11-code/project"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn github-link-btn"
@@ -94,7 +94,7 @@ const Footer = () => {
             © {new Date().getFullYear()} CampusMart. Designed & Developed with <FaHeart className="heart-icon" /> by <strong>CampusMart Open-Source Community</strong>.
           </p>
           <div className="footer-bottom-links">
-            <a href="https://github.com/campusmart-org/CampusMart" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/prabhavathi11-code/project" target="_blank" rel="noopener noreferrer">
               Source Code
             </a>
             <span>•</span>

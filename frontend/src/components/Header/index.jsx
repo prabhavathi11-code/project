@@ -65,7 +65,7 @@ const Header = () => {
         <div className="header-actions">
           {/* GitHub Repository Link */}
           <a
-            href="https://github.com/campusmart-org/CampusMart"
+            href="https://github.com/prabhavathi11-code/project"
             target="_blank"
             rel="noopener noreferrer"
             className="action-icon-btn github-btn"
